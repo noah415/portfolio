@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Head from 'next/head';
 import React, { useState } from 'react';
 import { Link } from 'react-scroll';
 import { JobCard, JobProps } from '../components/JobCard';
@@ -111,14 +112,21 @@ export default function Home() {
 
   return (
     <div>
+      <Head>
+        <title>Noah Otsuka</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel='icon' href="./betterlogo.svg"></link>
+      </Head>
       {/* Header */}
-      <div className="flex flex-row w-full justify-end p-4 fixed top-0 bg-background">
-        <div className="w-1/2 flex flex-row justify-evenly items-center">
+      <div className="flex flex-row w-full justify-between p-4 fixed top-0 bg-background items-center">
+        <div className="pl-2">
           <Link to={"hello"} smooth={true} duration={500}>
-            <a className="font-display max-w-sm leading-tight">
-              <span className="link link-underline link-underline-black">Hello</span>
+            <a>
+              <img src="/betterlogo.svg" alt="logo" width={40} height={40}/>
             </a>
           </Link>
+        </div>
+        <div className="w-1/2 flex flex-row justify-evenly items-center">
           <Link to={"about"} smooth={true} duration={500}>
             <a className="font-display max-w-sm leading-tight">
               <span className="link link-underline link-underline-black">About</span>
