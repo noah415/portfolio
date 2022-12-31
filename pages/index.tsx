@@ -51,7 +51,7 @@ export default function Home() {
       {/* Footer */}
       <Footer />
       
-      <p className="md:text-[5px] text-xs text-secondary text-center">Designed and Built by Noah Otsuka</p>
+      <p className="text-xs text-secondary text-center">Designed and Built by Noah Otsuka</p>
       <p className="text-xs text-secondary text-center pb-2">Using ReactJS NextJS and tailwindcss</p>
     </div>
   );
