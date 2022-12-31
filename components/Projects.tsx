@@ -54,12 +54,12 @@ export const Projects = () => {
       ],
     },
   ];
-  
+
   return (
-    <div id="projects" className="flex flex-wrap flex-column justify-center items-center min-h-screen min-w-screen">
-      <div className="w-3/4">
-        <h1 className="text-3xl font-semibold text-primary3">Projects</h1>
-        <div className="grid grid-cols-3 gap-4 mt-6">
+    <div id="projects" className="flex flex-wrap flex-column justify-center items-center min-h-screen min-w-screen pt-20 lg:pt-0">
+      <div className="lg:w-3/4 p-4 lg:p-0">
+        <h1 className="text-2xl lg:text-3xl font-semibold text-primary3">Projects</h1>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-6">
           {projects.map((project, index) => {
             return (
               <ProjectCard key={index} {...project} />

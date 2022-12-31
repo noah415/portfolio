@@ -45,8 +45,8 @@ export const Experience = () => {
 
   return (
     <div id="experience" className="flex flex-wrap flex-column justify-center items-center min-h-screen min-w-screen">
-      <div className="w-1/2">
-        <h1 className="text-3xl font-semibold text-primary3">Experience</h1>
+      <div className="lg:w-1/2 p-4 lg:p-0">
+        <h1 className="text-2xl lg:text-3xl pt-20 lg:pt-0 font-semibold text-primary3">Experience</h1>
         <div className="grid grid-cols-1 gap-4 mt-6">
           {jobs.map((job, index) => {
             return (

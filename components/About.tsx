@@ -2,10 +2,10 @@ import React from 'react';
 
 export const About = () => {
   return (
-    <div id="about" className="flex flex-wrap flex-column justify-center items-center min-h-screen min-w-screen">
-      <div className="flex w-1/2 justify-end">
-        <div className="w-3/4">
-          <h1 className="text-3xl text-primary3 font-semibold">About Me</h1>
+    <div id="about" className="flex flex-wrap flex-column justify-center items-center min-h-screen min-w-screen pt-20">
+      <div className="flex flex-wrap lg:w-1/2 p-4 lg:p-0 justify-end">
+        <div className="lg:w-3/4">
+          <h1 className="text-2xl lg:text-3xl text-primary3 font-semibold">About Me</h1>
           <p className="text-secondary mt-8">
             Hello, my name is Noah, and I love creating applications for users/customers to interact with.
             I love creating web or mobile applications whether for work, school, or as a personal project.
