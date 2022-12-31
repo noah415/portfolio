@@ -5,9 +5,16 @@
 body {
   background-color: #362f27;
   color: #698087;
+  overflow-x: clip;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 .link-underline {
+  padding: 4px;
   border-bottom-width: 0;
   background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
   background-size: 0 2px;
@@ -22,5 +29,5 @@ body {
 
 .link-underline:hover {
   background-size: 100% 2px;
-  background-position: 0 100%
+  background-position: 0px 100%
 }
