@@ -15,6 +15,7 @@ export const Projects = () => {
     },
     {
       name: 'Recibase',
+      link: 'https://github.com/noah415/Recibase',
       body: 'This is a web application that allows users to store their recipes and create weekly meal schedules so the users don\'t have to . This project uses JWT user authentication.',
       skills: [
         'Go',
