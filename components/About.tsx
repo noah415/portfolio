@@ -21,9 +21,9 @@ export const About = () => {
             and
             <a className="text-primary2 mt-6"> JWT </a>
             security, 
-            so I created a GitHub repositor named 
+            so I created a GitHub repository named 
             <a className="text-primary2 mt-6"> jwt-go-server </a>
-            that acts as a starting point for creating a JWT authentication server using Go.
+            that acts as a starting point for creating a JWT authenticated server using Go.
           </p>
         </div>
       </div>
