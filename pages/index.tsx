@@ -25,8 +25,10 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Noah Otsuka</title>
+        <title>Noah Otsuka Portfolio</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="This is software engineer, Noah Otsuka's website. Here you can learn more about his passions, skills, and projects."></meta>
+        <link rel="canonical" href="https://portfolio-noah415.vercel.app/" />
         <link rel='icon' href="./betterlogo.svg"></link>
       </Head>
 
