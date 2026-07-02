@@ -2,42 +2,151 @@
 
 @theme {
   --color-*: initial;
-  --color-primary: #698087;
-  --color-primary2: #b55a2a;
-  --color-primary3: #faf2c5;
-  --color-secondary: #82786c;
-  --color-secondary2: #4d5e63;
-  --color-background: #362f27;
-  --color-white: #ffffff;
-  --color-black: #0000ff;
+  --color-bg: #04060d;
+  --color-text: #e9edf7;
+  --color-accent: #5b8cff;
+  --font-heading: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  --font-body: var(--font-manrope), 'Manrope', system-ui, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #04060d;
+  color: #e9edf7;
+  --accent: #5b8cff;
+  --accent-soft: color-mix(in srgb, var(--accent) 62%, #ffffff);
+  --accent-glow: color-mix(in srgb, var(--accent) 55%, transparent);
+  --accent-dim: color-mix(in srgb, var(--accent) 16%, #0b1122);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background-color: #362f27;
-  color: #698087;
-  overflow-x: clip;
+  font-family: var(--font-body);
 }
 
-html {
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+::selection {
+  background: var(--accent-glow);
+  color: #fff;
 }
 
-.link-underline {
-  padding: 4px;
-  border-bottom-width: 0;
-  background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
-  background-size: 0 2px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size .5s ease-in-out;
+[data-scroll]::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
-.link-underline-black {
-  background-image: linear-gradient(transparent, transparent), linear-gradient(#faf2c5, #faf2c5)
+[data-scroll] {
+  scrollbar-width: none;
+  /* Native scroll-snap should settle instantly once the user stops scrolling;
+     programmatic jumps (nav/dots/CTAs) request smooth behavior explicitly via scrollTo(). */
+  scroll-behavior: auto;
 }
 
-.link-underline:hover {
-  background-size: 100% 2px;
-  background-position: 0px 100%
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-9px); }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); opacity: .55; }
+  50% { transform: translateY(9px); opacity: 1; }
+}
+
+@keyframes haloPulse {
+  0%, 100% { opacity: .5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: .9; transform: translate(-50%, -50%) scale(1.06); }
+}
+
+@keyframes hueDrift {
+  0%, 100% { opacity: .5; }
+  50% { opacity: .85; }
+}
+
+/* Scroll-reveal: base hidden state + revealed state, toggled by IntersectionObserver (see useReveal). */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .85s cubic-bezier(.22,.61,.36,1), transform .85s cubic-bezier(.22,.61,.36,1);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Thin, unobtrusive scrollbar for the expanded certification list. */
+.cert-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140, 160, 220, .3) transparent;
+}
+.cert-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.cert-scroll::-webkit-scrollbar-thumb {
+  background: rgba(140, 160, 220, .3);
+  border-radius: 3px;
+}
+
+/* Progress-dot breadcrumb labels: hidden until the crumb is hovered, then slide in
+   right-to-left with an accent outline. Leaving reverses the same transition
+   (left-to-right) automatically since it's a single symmetric CSS transition. */
+.dot-label {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(10px);
+  color: var(--accent-soft);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: opacity .22s ease, transform .22s ease, border-color .22s ease, background-color .22s ease;
+  pointer-events: none;
+}
+.dot-item:hover .dot-label {
+  opacity: 1;
+  transform: translateX(0);
+  border-color: var(--accent-soft);
+  background: var(--accent-dim);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1000px) {
+  [data-hero-planet] { display: none !important; }
+}
+
+@media (max-width: 960px) {
+  [data-hero-grid] { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; }
+  [data-exp-grid] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-about-grid] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-fun-grid] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+@media (max-width: 720px) {
+  /* Snap stays on at mobile (per request); sections use min-height instead of a
+     fixed height so a section taller than one screen can still be scrolled
+     within before snapping to the next one. */
+  [data-section] {
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+  [data-nav-links] > span:not([data-nav-projects]) { display: none !important; }
+  [data-nav-links] { gap: 12px !important; }
+  [data-dots] { display: none !important; }
+  [data-mobile-dots] { display: flex !important; }
+  [data-social] { display: none !important; }
+  [data-stat-grid] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-fun-grid] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-contact-social] { flex-wrap: wrap !important; justify-content: center !important; }
+  [data-hero-name] { font-size: clamp(44px, 13vw, 72px) !important; }
 }
