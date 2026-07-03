@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function useCountUp(target: number, trigger: boolean, duration = 1600) {
   const [value, setValue] = useState(0);
-  const startedRef = useRef(false);
 
   useEffect(() => {
-    if (!trigger || startedRef.current) return;
-    startedRef.current = true;
+    if (!trigger) {
+      setValue(0);
+      return;
+    }
 
     const start = performance.now();
     let raf: number;
