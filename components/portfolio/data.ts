@@ -13,6 +13,7 @@ export const jobs: Job[] = [
     dates: 'Apr 2023 — Present',
     current: true,
     bullets: [
+      'Proposed, designed, and led a team through a codebase refactor — cut the code required for a new feature 73% and unlocked ~$350k in annualized time savings.',
       'Led an Azure migration of a 23-server on-prem environment in 5 months — a job a prior team spent 2 years failing to finish.',
       'Acted as frontend tech lead for a platform serving 800+ teams; scaled releases from 2/yr to 10 in ~10 months.',
       'Shipped an end-to-end Lambda-based IAM credential system and cut client page-load time 20×.',
@@ -114,6 +115,15 @@ export const funFacts: FunFact[] = [
   },
 ];
 
+export interface Project {
+  label: string;
+  href: string;
+}
+
+export const projects: Project[] = [
+  { label: 'Kabuboard', href: 'https://ui.kabuboard.noahotsuka.com' },
+];
+
 export const socials = {
   github: 'https://github.com/noah415',
   linkedin: 'https://www.linkedin.com/in/noah-otsuka415/',
@@ -122,4 +132,4 @@ export const socials = {
 
 export const email = 'noah.otsuka04@gmail.com';
 
-export const version = 'v2.0.0';
+export const version = 'v2.1.0';

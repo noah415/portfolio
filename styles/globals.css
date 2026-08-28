@@ -140,7 +140,8 @@ body {
     padding-left: 22px !important;
     padding-right: 22px !important;
   }
-  [data-nav-links] > span:not([data-nav-projects]) { display: none !important; }
+  [data-nav-links] > span { display: none !important; }
+  [data-projects-wrap] { display: none !important; }
   [data-nav-links] { gap: 12px !important; }
   [data-dots] { display: none !important; }
   [data-mobile-dots] { display: flex !important; }
