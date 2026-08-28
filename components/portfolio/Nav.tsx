@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { sectionLabels } from './ProgressDots';
+import { projects } from './data';
 
 interface NavProps {
   onGo: (index: number) => void;
@@ -14,6 +15,22 @@ const links = [
 ];
 
 export const Nav = ({ onGo, activeIndex }: NavProps) => {
+  const [projectsOpen, setProjectsOpen] = useState(false);
+  const projectsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!projectsOpen) return;
+
+    const onDocumentClick = (event: MouseEvent) => {
+      if (!projectsRef.current?.contains(event.target as Node)) {
+        setProjectsOpen(false);
+      }
+    };
+
+    document.addEventListener('click', onDocumentClick);
+    return () => document.removeEventListener('click', onDocumentClick);
+  }, [projectsOpen]);
+
   return (
     <nav
       className="absolute z-40 top-0 left-0 right-0 flex items-center justify-between"
@@ -63,20 +80,64 @@ export const Nav = ({ onGo, activeIndex }: NavProps) => {
             />
           ))}
         </div>
-        <span
-          data-nav-projects
-          title="Coming soon"
-          className="text-sm font-semibold cursor-default inline-flex items-center gap-1.5"
-          style={{ color: '#414c6b' }}
-        >
-          Projects
-          <span
-            className="text-[9px] tracking-[.14em] px-1.5 py-0.5 rounded-md"
-            style={{ border: '1px solid #2a3350', color: '#63709a' }}
+        <div data-projects-wrap ref={projectsRef} className="relative">
+          <button
+            type="button"
+            aria-expanded={projectsOpen}
+            onClick={(e) => {
+              e.stopPropagation();
+              setProjectsOpen((open) => !open);
+            }}
+            className="bg-transparent border-0 p-0 text-sm font-semibold cursor-pointer select-none inline-flex items-center gap-1.5"
+            style={{ color: '#aab4d0' }}
           >
-            SOON
-          </span>
-        </span>
+            Projects
+            <svg
+              width="10"
+              height="10"
+              viewBox="0 0 10 10"
+              className="transition-transform duration-200"
+              style={{ transform: projectsOpen ? 'rotate(180deg)' : 'none' }}
+            >
+              <path d="M1 3l4 4 4-4" stroke="currentColor" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          {projectsOpen && (
+            <div
+              className="absolute rounded-xl"
+              style={{
+                top: 'calc(100% + 12px)',
+                right: 0,
+                minWidth: 180,
+                padding: 6,
+                background: '#0b1122',
+                border: '1px solid rgba(140,160,220,.22)',
+                boxShadow: '0 12px 30px rgba(0,0,0,.4)',
+              }}
+            >
+              {projects.map((project) => (
+                <a
+                  key={project.href}
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block no-underline text-[13.5px] font-semibold rounded-lg transition-colors duration-200"
+                  style={{ color: '#c3cde8', padding: '9px 12px' }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.background = 'var(--accent-dim)';
+                    e.currentTarget.style.color = '#fff';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = '#c3cde8';
+                  }}
+                >
+                  {project.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
         <a
           href="/noah_otsuka_resume.pdf"
           download

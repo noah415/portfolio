@@ -1,5 +1,6 @@
 import React from 'react';
 import { Reveal } from '../Reveal';
+import { MetricHeroCard } from '../MetricHeroCard';
 import { useCountUp } from '../hooks/useCountUp';
 import { headlineStats, secondaryStats } from '../data';
 
@@ -48,75 +49,46 @@ export const Metrics = ({ active }: MetricsProps) => {
       </Reveal>
 
       <Reveal
-        style={{
-          flex: '0 0 auto',
-          position: 'relative',
-          overflow: 'hidden',
-          borderRadius: 22,
-          padding: 'clamp(22px,3.2vw,40px)',
-          background: 'linear-gradient(140deg, rgba(22,30,54,.55), rgba(10,14,28,.5))',
-          border: '1px solid rgba(140,160,220,.16)',
-        }}
+        data-hero-grid
+        className="grid"
+        style={{ flex: '0 0 auto', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 'clamp(14px,1.6vw,20px)' }}
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(120% 90% at 100% 0%, color-mix(in srgb,var(--accent) 14%, transparent), transparent 55%)' }}
-        />
-        <div
-          data-hero-grid
-          className="relative grid items-center"
-          style={{ gridTemplateColumns: 'minmax(0,1fr) minmax(0,.82fr)', gap: 'clamp(22px,4vw,56px)' }}
-        >
-          <div>
-            <div className="font-heading text-[12.5px] tracking-[.2em] uppercase mb-3" style={{ color: '#8b95b2' }}>
-              The migration everyone else gave up on
-            </div>
-            <div className="flex items-end gap-2" style={{ lineHeight: 0.82 }}>
-              <span
-                className="font-heading font-bold"
-                style={{
-                  fontSize: 'clamp(72px,10vw,120px)',
-                  letterSpacing: '-.03em',
-                  background: 'linear-gradient(180deg,#eef3ff,var(--accent-soft))',
-                  WebkitBackgroundClip: 'text',
-                  backgroundClip: 'text',
-                  color: 'transparent',
-                }}
-              >
-                5
-              </span>
-              <span
-                className="font-heading font-medium"
-                style={{ fontSize: 'clamp(22px,2.8vw,38px)', color: 'var(--accent-soft)', paddingBottom: 'clamp(9px,1.3vw,16px)' }}
-              >
-                months
-              </span>
-            </div>
-            <p style={{ maxWidth: 480, fontSize: 'clamp(13.5px,1.35vw,16px)', lineHeight: 1.62, color: '#9aa5c4', margin: '16px 0 0' }}>
+        <MetricHeroCard
+          eyebrow="The migration everyone else gave up on"
+          stat="5"
+          statSuffix="months"
+          body={
+            <>
               A prior team spent{' '}
               <strong style={{ color: '#dce3f6', fontWeight: 600 }}>2 years</strong> trying to migrate a
               23-server on-prem environment to Azure — and failed. I finished it in{' '}
               <strong style={{ color: '#dce3f6', fontWeight: 600 }}>5 months</strong>, coordinating 12+
               stakeholders across networking, security, and warehouse teams.
-            </p>
-          </div>
-          <div className="flex flex-col gap-[18px]">
-            <div className="grid items-center gap-3.5" style={{ gridTemplateColumns: 'auto 1fr auto' }}>
-              <span style={{ fontSize: 13, color: '#9aa5c4', whiteSpace: 'nowrap', minWidth: 70, width: 77 }}>Prior team</span>
-              <div style={{ height: 8, borderRadius: 99, background: 'rgba(255,255,255,.06)', overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: '100%', borderRadius: 99, background: '#4a5578' }} />
-              </div>
-              <span style={{ fontSize: 13, color: '#c3cde8', whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums' }}>24 mo</span>
-            </div>
-            <div className="grid items-center gap-3.5" style={{ gridTemplateColumns: 'auto 1fr auto' }}>
-              <span style={{ fontSize: 13, color: 'var(--accent-soft)', whiteSpace: 'nowrap', minWidth: 70, width: 77 }}>My approach</span>
-              <div style={{ height: 8, borderRadius: 99, background: 'rgba(255,255,255,.06)', overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: '21%', borderRadius: 99, background: 'linear-gradient(90deg,var(--accent),var(--accent-soft))' }} />
-              </div>
-              <span style={{ fontSize: 13, color: '#c3cde8', whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums' }}>5 mo</span>
-            </div>
-          </div>
-        </div>
+            </>
+          }
+          bars={[
+            { label: 'Prior team', value: '24 mo', fillPercent: 100 },
+            { label: 'My approach', value: '5 mo', fillPercent: 21, accent: true },
+          ]}
+        />
+        <MetricHeroCard
+          eyebrow="Annualized savings, unlocked"
+          statPrefix="$"
+          stat="350k"
+          statSuffix="savings per year"
+          body={
+            <>
+              Driven by a codebase refactor I proposed, designed, and led — cutting the code required to
+              ship a new feature <strong style={{ color: '#dce3f6', fontWeight: 600 }}>73%</strong>, from{' '}
+              <strong style={{ color: '#dce3f6', fontWeight: 600 }}>532 lines</strong> down to{' '}
+              <strong style={{ color: '#dce3f6', fontWeight: 600 }}>140</strong>.
+            </>
+          }
+          bars={[
+            { label: 'Lines · before', value: '532', fillPercent: 100 },
+            { label: 'Lines · after', value: '140', fillPercent: 26.3, accent: true },
+          ]}
+        />
       </Reveal>
 
       <Reveal
