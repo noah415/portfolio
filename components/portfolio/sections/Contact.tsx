@@ -28,13 +28,13 @@ export const Contact = () => {
         className="font-heading font-bold m-0"
         style={{ fontSize: 'clamp(38px,6.5vw,84px)', letterSpacing: '-.03em', color: '#f3f6ff', lineHeight: 0.98 }}
       >
-        Let&apos;s build something.
+        Let&apos;s talk.
       </Reveal>
       <Reveal
         as="p"
         style={{ fontSize: 'clamp(15px,1.6vw,19px)', color: '#93a0bf', margin: '22px 0 40px', maxWidth: 520, lineHeight: 1.6 }}
       >
-        Open to senior engineering roles and remote work. The fastest way to reach me is email.
+        The fastest way to reach me is email.
       </Reveal>
       <Reveal
         as="a"
