@@ -28,7 +28,7 @@ export const About = () => {
         </Reveal>
         <div>
           <Reveal className="font-heading text-[13px] tracking-[.26em] uppercase mb-3" style={{ color: 'var(--accent-soft)' }}>
-            About &amp; goals
+            About
           </Reveal>
           <Reveal
             as="h2"
@@ -41,23 +41,6 @@ export const About = () => {
             I&apos;ve stepped up as an acting frontend tech lead and cross-functional project manager
             through complex migrations — scoping work, designing features, and keeping delivery on track
             for platforms serving hundreds of teams.
-          </Reveal>
-          <Reveal
-            style={{
-              padding: '20px 24px',
-              borderRadius: 16,
-              border: '1px solid var(--accent-glow)',
-              background: 'linear-gradient(150deg, var(--accent-dim), rgba(255,255,255,.01))',
-              maxWidth: 600,
-            }}
-          >
-            <div className="text-[11px] tracking-[.18em] uppercase mb-2" style={{ color: 'var(--accent-soft)' }}>
-              Where I&apos;m headed
-            </div>
-            <p className="m-0" style={{ fontSize: 'clamp(15px,1.5vw,17px)', lineHeight: 1.6, color: '#dbe2f2' }}>
-              A senior engineering role at a growth-stage startup where I can move fast, own outcomes, and
-              grow into technical and product leadership.
-            </p>
           </Reveal>
         </div>
       </div>
